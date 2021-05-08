@@ -13,7 +13,7 @@ namespace UsbDetector
         private readonly Action<string> callback;
         public DeviceInsertionWatchdog(Action<string> callback)
         {
-            this.watchdog = new DeviceWatchdog(this.DeviceCallback);
+            this.watchdog = new(this.DeviceCallback);
             this.devices = DeviceList.GetDevices();
             this.callback = callback;
         }

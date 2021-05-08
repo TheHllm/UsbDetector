@@ -17,13 +17,13 @@ namespace UsbDetector
             WqlEventQuery insertQuery = new("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 2");
 
             ManagementEventWatcher insertWatcher = new(insertQuery);
-            insertWatcher.EventArrived += new EventArrivedEventHandler(OnDeviceEvent);
+            insertWatcher.EventArrived += new(OnDeviceEvent);
             insertWatcher.Start();
 
             // we dont actually care about remove events...
-            /*WqlEventQuery removeQuery = new WqlEventQuery("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 1");
+            /*WqlEventQuery removeQuery = new("SELECT * FROM Win32_DeviceChangeEvent WHERE EventType = 1");
             ManagementEventWatcher removeWatcher = new ManagementEventWatcher(removeQuery);
-            removeWatcher.EventArrived += new EventArrivedEventHandler(OnDeviceEvent);
+            removeWatcher.EventArrived += new(OnDeviceEvent);
             removeWatcher.Start();*/
 
             this.Callback = callback;
